@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PharmaTrust - Medicine Information & Verification</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+
+    <!-- Main Container -->
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        
+        <!-- Header -->
+        <header class="flex items-center justify-between mb-12">
+            <div class="flex items-center gap-3 cursor-pointer" onclick="goToHomepage()">
+                <!-- Logo SVG (Shield with Cross) -->
+                <svg class="w-10 h-10 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944zM11 14a1 1 0 11-2 0 1 1 0 012 0zm0-7a1 1 0 10-2 0v3a1 1 0 102 0V7z" clip-rule="evenodd"/>
+                </svg>
+                <h1 class="text-3xl font-bold text-gray-900">PharmaTrust</h1>
+            </div>
+            
+            <!-- Header Search Bar (visible on results page) -->
+            <div id="headerSearch" class="hidden flex-1 max-w-xl mx-8">
+                <div class="flex gap-2">
+                    <input 
+                        type="text" 
+                        id="headerSearchInput"
+                        placeholder="Search medicine..."
+                        class="flex-1 px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-200"
+                    >
+                    <button 
+                        onclick="handleHeaderSearch()"
+                        class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition"
+                    >
+                        Search
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Homepage Section (Visible on Load) -->
+        <section id="homepage" class="space-y-12">
+            
+            <!-- Hero Section -->
+            <div class="text-center space-y-6">
+                <h2 class="text-5xl font-bold text-gray-900">Find Medicine Information</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Search by name or upload a photo to verify authenticity...
+                </p>
+            </div>
+
+            <!-- Main Search Bar -->
+            <div class="max-w-2xl mx-auto space-y-4">
+                <div class="flex gap-3">
+                    <input 
+                        type="text" 
+                        id="searchInput"
+                        placeholder="Search medicine by name (e.g., Paracetamol 500)"
+                        class="flex-1 px-6 py-4 text-lg border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-200 transition"
+                    >
+                    <button 
+                        onclick="handleSearch()"
+                        class="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition shadow-md hover:shadow-lg"
+                    >
+                        Search
+                    </button>
+                </div>
+
+                <!-- Upload Button -->
+                <button 
+                    onclick="triggerFileUpload()"
+                    class="w-full px-6 py-4 bg-white border-2 border-gray-300 hover:border-blue-600 text-gray-700 font-semibold rounded-lg transition shadow-sm hover:shadow-md flex items-center justify-center gap-2"
+                >
+                    <!-- Upload Icon -->
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                    </svg>
+                    Upload Medicine Photo
+                </button>
+                
+                <!-- Hidden File Input -->
+                <input 
+                    type="file" 
+                    id="fileInput" 
+                    accept="image/*" 
+                    multiple 
+                    class="hidden"
+                    onchange="handleFileUpload()"
+                >
+            </div>
+
+            <!-- Feature Cards -->
+            <div class="grid md:grid-cols-3 gap-8 mt-16">
+                
+                <!-- Card 1: Verify Authenticity -->
+                <div class="bg-white rounded-xl shadow-md p-8 hover:shadow-lg transition">
+                    <div class="flex justify-center mb-6">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
+                            <!-- Shield Icon -->
+                            <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3 text-center">Verify Authenticity</h3>
+                    <p class="text-gray-600 text-center">Upload medicine photos for AI-powered authenticity verification</p>
+                </div>
+
+                <!-- Card 2: Easy Search -->
+                <div class="bg-white rounded-xl shadow-md p-8 hover:shadow-lg transition">
+                    <div class="flex justify-center mb-6">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
+                            <!-- Magnifying Glass Icon -->
+                            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3 text-center">Easy Search</h3>
+                    <p class="text-gray-600 text-center">Quickly find medicine information by searching with the name</p>
+                </div>
+
+                <!-- Card 3: Complete Details -->
+                <div class="bg-white rounded-xl shadow-md p-8 hover:shadow-lg transition">
+                    <div class="flex justify-center mb-6">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
+                            <!-- Pill Icon -->
+                            <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3 text-center">Complete Details</h3>
+                    <p class="text-gray-600 text-center">Get comprehensive medicine details including dosage, warnings, and more</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Search Results Section (Hidden by default) -->
+        <section id="searchResults" class="hidden mt-12">
+            <div class="max-w-4xl mx-auto">
+                
+                <!-- Back Button -->
+                <button 
+                    onclick="showHomepage()"
+                    class="mb-6 flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold"
+                >
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                    </svg>
+                    Back to Search
+                </button>
+
+                <!-- Loading State -->
+                <div id="loadingState" class="hidden text-center py-12">
+                    <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+                    <p class="mt-4 text-gray-600">Searching...</p>
+                </div>
+
+                <!-- Error State -->
+                <div id="errorState" class="hidden">
+                    <div class="bg-red-50 border border-red-200 text-red-800 px-6 py-4 rounded-lg">
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                            </svg>
+                            <span id="errorMessage" class="font-semibold"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Result Card -->
+                <div id="resultCard" class="hidden bg-white rounded-xl shadow-lg p-8">
+                    <!-- Medicine Name -->
+                    <h2 id="medicineName" class="text-3xl font-bold text-blue-600 mb-6"></h2>
+
+                    <!-- Meta Information Grid -->
+                    <div class="grid md:grid-cols-2 gap-6 mb-8">
+                        <div class="space-y-1">
+                            <p class="text-sm font-semibold text-gray-500 uppercase">Manufacturer</p>
+                            <p id="manufacturer" class="text-lg text-gray-900"></p>
+                        </div>
+                        <div class="space-y-1">
+                            <p class="text-sm font-semibold text-gray-500 uppercase">Dosage</p>
+                            <p id="dosage" class="text-lg text-gray-900"></p>
+                        </div>
+                        <div class="space-y-1">
+                            <p class="text-sm font-semibold text-gray-500 uppercase">Batch</p>
+                            <p id="batch" class="text-lg text-gray-900"></p>
+                        </div>
+                        <div class="space-y-1">
+                            <p class="text-sm font-semibold text-gray-500 uppercase">Expiry</p>
+                            <p id="expiry" class="text-lg text-gray-900"></p>
+                        </div>
+                    </div>
+
+                    <!-- Description Section -->
+                    <div class="mb-8 border-t pt-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">Description</h3>
+                        <p id="description" class="text-gray-700 leading-relaxed"></p>
+                    </div>
+
+                    <!-- Warnings Section -->
+                    <div class="border-t pt-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">Warnings</h3>
+                        <ul id="warningsList" class="space-y-2"></ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Page Section (Hidden by default) -->
+        <section id="resultsPage" class="hidden mt-12">
+            <div class="max-w-5xl mx-auto space-y-8">
+                
+                <!-- Medicine Title -->
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">Hemalb Human Albumin 20% I.P.</h2>
+                    <div class="flex items-center gap-2 text-gray-600">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                        </svg>
+                        <p class="font-semibold">Manufactured by: <span class="text-gray-900">Bharat Serums & Vaccines Ltd.</span></p>
+                    </div>
+                </div>
+
+                <!-- Verification Box (Most Important) -->
+                <div class="bg-green-50 border-2 border-green-300 rounded-xl shadow-md p-8">
+                    <div class="flex items-center gap-3 mb-6">
+                        <svg class="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                        <h3 class="text-3xl font-bold text-green-800">Appears Genuine</h3>
+                        <span class="ml-2 px-3 py-1 bg-green-200 text-green-800 text-sm font-semibold rounded-full">HIGH CONFIDENCE</span>
+                    </div>
+                    
+                    <div class="space-y-3 text-green-900">
+                        <div class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-green-600 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <p class="leading-relaxed"><strong>Clear and legible printing</strong> - All text on the packaging is sharp and professionally printed with no smudging or irregular fonts.</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-green-600 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <p class="leading-relaxed"><strong>Batch number appears valid</strong> - The batch number format matches the manufacturer's standard coding system.</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-green-600 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <p class="leading-relaxed"><strong>Holographic security features present</strong> - Genuine holographic seal visible on the packaging that changes appearance when tilted.</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-green-600 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <p class="leading-relaxed"><strong>Packaging quality consistent</strong> - High-quality packaging materials with proper sealing and no signs of tampering.</p>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <svg class="w-5 h-5 text-green-600 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <p class="leading-relaxed"><strong>Expiry date clearly visible</strong> - Expiration date is properly embossed and matches expected format.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Information Sections -->
+                
+                <!-- Description Section -->
+                <div class="bg-white rounded-xl shadow-md p-8">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900">Description</h3>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed">
+                        Human Albumin 20% is a sterile solution of albumin derived from human plasma. It is used to increase blood volume and maintain cardiac output in the treatment of certain types of shock or low blood volume. This solution contains 20 grams of albumin per 100 mL and is administered intravenously. Albumin is a naturally occurring plasma protein that helps maintain the osmotic pressure needed for proper distribution of body fluids between blood vessels and body tissues.
+                    </p>
+                </div>
+
+                <!-- Dosage Section -->
+                <div class="bg-white rounded-xl shadow-md p-8">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900">Dosage</h3>
+                    </div>
+                    <div class="text-gray-700 leading-relaxed space-y-3">
+                        <p><strong>Adult Dosage:</strong> The usual dose is 25-50 grams (125-250 mL of 20% solution) administered intravenously. The rate of administration should not exceed 2-4 mL per minute.</p>
+                        <p><strong>Pediatric Dosage:</strong> 0.5-1 gram per kg of body weight, administered slowly over 2-4 hours. The dosage should be adjusted based on the patient's condition and response.</p>
+                        <p><strong>Administration:</strong> Must be administered intravenously by qualified healthcare professionals only. The solution should be at room temperature before administration.</p>
+                        <p class="text-sm italic text-gray-600 mt-4">* Dosage may vary based on individual patient needs. Always consult with a healthcare provider for proper administration.</p>
+                    </div>
+                </div>
+
+                <!-- Warnings Section -->
+                <div class="bg-white rounded-xl shadow-md p-8">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900">Warnings</h3>
+                    </div>
+                    <ul class="space-y-3">
+                        <li class="flex items-start gap-3 p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <svg class="w-5 h-5 text-yellow-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-gray-800">Do not use if the solution is cloudy or contains particulate matter. Inspect visually before use.</span>
+                        </li>
+                        <li class="flex items-start gap-3 p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <svg class="w-5 h-5 text-yellow-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-gray-800">Contraindicated in patients with severe anemia or cardiac failure with normal or increased intravascular volume.</span>
+                        </li>
+                        <li class="flex items-start gap-3 p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <svg class="w-5 h-5 text-yellow-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-gray-800">Monitor vital signs during administration. Stop infusion immediately if allergic reactions occur.</span>
+                        </li>
+                        <li class="flex items-start gap-3 p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <svg class="w-5 h-5 text-yellow-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-gray-800">Use with caution in patients with renal or hepatic insufficiency. Dosage adjustment may be required.</span>
+                        </li>
+                        <li class="flex items-start gap-3 p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <svg class="w-5 h-5 text-yellow-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                            </svg>
+                            <span class="text-gray-800">Not for intramuscular or subcutaneous use. Intravenous administration only.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Side Effects Section -->
+                <div class="bg-white rounded-xl shadow-md p-8">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
+                            <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900">Side Effects</h3>
+                    </div>
+                    <div class="text-gray-700 space-y-4">
+                        <div>
+                            <h4 class="font-semibold text-lg text-gray-900 mb-2">Common Side Effects:</h4>
+                            <ul class="list-disc list-inside space-y-1 ml-4">
+                                <li>Flushing or warmth sensation</li>
+                                <li>Nausea or vomiting</li>
+                                <li>Headache</li>
+                                <li>Chills or fever</li>
+                                <li>Increased salivation</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-lg text-gray-900 mb-2">Serious Side Effects (Seek immediate medical attention):</h4>
+                            <ul class="list-disc list-inside space-y-1 ml-4">
+                                <li>Severe allergic reactions (difficulty breathing, swelling of face/throat)</li>
+                                <li>Rapid heart rate or chest pain</li>
+                                <li>Severe hypotension (low blood pressure)</li>
+                                <li>Fluid overload or pulmonary edema</li>
+                                <li>Signs of hemolysis (blood in urine, jaundice)</li>
+                            </ul>
+                        </div>
+                        <p class="text-sm italic text-red-600 mt-4 p-3 bg-red-50 rounded border-l-4 border-red-400">
+                            <strong>Important:</strong> This is not a complete list of side effects. Contact your healthcare provider immediately if you experience any unusual symptoms during or after administration.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Verification Results Section (Hidden by default) -->
+        <section id="verifyResults" class="hidden mt-12">
+            <div class="max-w-4xl mx-auto">
+                
+                <!-- Back Button -->
+                <button 
+                    onclick="showHomepage()"
+                    class="mb-6 flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold"
+                >
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                    </svg>
+                    Back to Search
+                </button>
+
+                <!-- Verify Loading State -->
+                <div id="verifyLoadingState" class="hidden text-center py-12">
+                    <div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+                    <p class="mt-4 text-gray-600">Analyzing images...</p>
+                </div>
+
+                <!-- Verify Error State -->
+                <div id="verifyErrorState" class="hidden">
+                    <div class="bg-red-50 border border-red-200 text-red-800 px-6 py-4 rounded-lg">
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                            </svg>
+                            <span id="verifyErrorMessage" class="font-semibold"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Verification Result Card -->
+                <div id="verifyResultCard" class="hidden bg-white rounded-xl shadow-lg p-8">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-8">Authenticity Verification Results</h2>
+
+                    <!-- Files Analyzed -->
+                    <div class="mb-6 p-4 bg-gray-50 rounded-lg">
+                        <p class="text-sm text-gray-600">
+                            <span class="font-semibold">Files Analyzed:</span>
+                            <span id="filesAnalyzed"></span>
+                        </p>
+                    </div>
+
+                    <!-- Score and Status -->
+                    <div class="grid md:grid-cols-2 gap-6 mb-8">
+                        <div class="p-6 bg-blue-50 rounded-lg text-center">
+                            <p class="text-sm font-semibold text-gray-600 uppercase mb-2">Authenticity Score</p>
+                            <p id="authScore" class="text-5xl font-bold text-blue-600"></p>
+                        </div>
+                        <div class="p-6 rounded-lg text-center" id="statusContainer">
+                            <p class="text-sm font-semibold text-gray-600 uppercase mb-2">Status</p>
+                            <p id="authStatus" class="text-2xl font-bold"></p>
+                        </div>
+                    </div>
+
+                    <!-- Analysis Hints -->
+                    <div class="border-t pt-6">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-3">Analysis Notes</h3>
+                        <ul id="hintsList" class="space-y-2"></ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        // API Configuration
+        const API_BASE = '/api'; // Uses Vite proxy or direct backend URL
+        const API_KEY = 'AIzaSyBzIuvcqo4Hy0nXKK89v-LXXbkBB49eFa4'; // Google API Key
+
+        // State Management
+        let currentView = 'homepage';
+
+        // View Management Functions
+        function showHomepage() {
+            document.getElementById('homepage').classList.remove('hidden');
+            document.getElementById('searchResults').classList.add('hidden');
+            document.getElementById('verifyResults').classList.add('hidden');
+            document.getElementById('resultsPage').classList.add('hidden');
+            document.getElementById('headerSearch').classList.add('hidden');
+            currentView = 'homepage';
+        }
+
+        function showSearchResults() {
+            document.getElementById('homepage').classList.add('hidden');
+            document.getElementById('searchResults').classList.remove('hidden');
+            document.getElementById('verifyResults').classList.add('hidden');
+            document.getElementById('resultsPage').classList.add('hidden');
+            document.getElementById('headerSearch').classList.add('hidden');
+            currentView = 'search';
+        }
+
+        function showVerifyResults() {
+            document.getElementById('homepage').classList.add('hidden');
+            document.getElementById('searchResults').classList.add('hidden');
+            document.getElementById('verifyResults').classList.remove('hidden');
+            document.getElementById('resultsPage').classList.add('hidden');
+            document.getElementById('headerSearch').classList.add('hidden');
+            currentView = 'verify';
+        }
+
+        function showResultsPage() {
+            document.getElementById('homepage').classList.add('hidden');
+            document.getElementById('searchResults').classList.add('hidden');
+            document.getElementById('verifyResults').classList.add('hidden');
+            document.getElementById('resultsPage').classList.remove('hidden');
+            document.getElementById('headerSearch').classList.remove('hidden');
+            currentView = 'results';
+        }
+
+        // Go to homepage (called when logo is clicked)
+        function goToHomepage() {
+            showHomepage();
+        }
+
+        // Search Functionality
+        async function handleSearch() {
+            const query = document.getElementById('searchInput').value.trim();
+            
+            if (!query) {
+                alert('Please enter a medicine name');
+                return;
+            }
+
+            showSearchResults();
+            showLoading();
+
+            try {
+                const response = await fetch(`${API_BASE}/medicine/${encodeURIComponent(query)}`);
+                
+                if (!response.ok) {
+                    if (response.status === 404) {
+                        showError('Medicine not found. Please try another search.');
+                    } else {
+                        const errorText = await response.text();
+                        showError(errorText || 'Search failed. Please try again.');
+                    }
+                    return;
+                }
+
+                const data = await response.json();
+                displaySearchResult(data);
+                
+            } catch (error) {
+                showError('Connection error. Please check if the backend is running.');
+            }
+        }
+
+        function showLoading() {
+            document.getElementById('loadingState').classList.remove('hidden');
+            document.getElementById('errorState').classList.add('hidden');
+            document.getElementById('resultCard').classList.add('hidden');
+        }
+
+        function showError(message) {
+            document.getElementById('loadingState').classList.add('hidden');
+            document.getElementById('errorState').classList.remove('hidden');
+            document.getElementById('resultCard').classList.add('hidden');
+            document.getElementById('errorMessage').textContent = message;
+        }
+
+        function displaySearchResult(data) {
+            document.getElementById('loadingState').classList.add('hidden');
+            document.getElementById('errorState').classList.add('hidden');
+            document.getElementById('resultCard').classList.remove('hidden');
+
+            // Populate result card
+            document.getElementById('medicineName').textContent = data.name || 'N/A';
+            document.getElementById('manufacturer').textContent = data.manufacturer || 'N/A';
+            document.getElementById('dosage').textContent = data.dosage || 'N/A';
+            document.getElementById('batch').textContent = data.batch || 'N/A';
+            document.getElementById('expiry').textContent = data.expiry || 'N/A';
+            document.getElementById('description').textContent = data.description || 'No description available.';
+
+            // Populate warnings list
+            const warningsList = document.getElementById('warningsList');
+            warningsList.innerHTML = '';
+            
+            if (data.warnings && data.warnings.length > 0) {
+                data.warnings.forEach(warning => {
+                    const li = document.createElement('li');
+                    li.className = 'flex items-start gap-2 p-3 bg-yellow-50 border-l-4 border-yellow-400 rounded';
+                    li.innerHTML = `
+                        <svg class="w-5 h-5 text-yellow-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                        </svg>
+                        <span class="text-gray-800">${warning}</span>
+                    `;
+                    warningsList.appendChild(li);
+                });
+            } else {
+                const li = document.createElement('li');
+                li.className = 'text-gray-600 italic';
+                li.textContent = 'No specific warnings.';
+                warningsList.appendChild(li);
+            }
+        }
+
+        // Upload Functionality
+        function triggerFileUpload() {
+            document.getElementById('fileInput').click();
+        }
+
+        // CRITICAL: Handle file upload and analyze with Gemini API
+        async function handleFileUpload() {
+            const fileInput = document.getElementById('fileInput');
+            const files = fileInput.files;
+
+            if (!files || files.length === 0) {
+                return;
+            }
+
+            // Show verification results page with loading state
+            showVerifyResults();
+            showVerifyLoading();
+
+            try {
+                const formData = new FormData();
+                
+                // Add all selected files
+                for (let i = 0; i < files.length; i++) {
+                    formData.append('images', files[i]);
+                }
+
+                const response = await fetch(`${API_BASE}/verify`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    showVerifyError(errorText || 'Verification failed. Please try again.');
+                    return;
+                }
+
+                const data = await response.json();
+                
+                // Display results in the green verification box format
+                displayGeminiVerification(data);
+                
+            } catch (error) {
+                showVerifyError('Connection error. Please check if the backend is running.');
+            }
+
+            // Reset file input
+            fileInput.value = '';
+        }
+
+        // Display Gemini AI analysis in Results Page format
+        function displayGeminiVerification(data) {
+            // Hide loading and errors
+            document.getElementById('verifyLoadingState').classList.add('hidden');
+            document.getElementById('verifyErrorState').classList.add('hidden');
+            
+            // Show results page instead of verify results
+            showResultsPage();
+            
+            // Update the verification box with real AI findings
+            updateVerificationBox(data);
+        }
+
+        // Update the green verification box with AI analysis
+        function updateVerificationBox(data) {
+            const score = data.score || 0;
+            const status = (data.status || 'suspect').toLowerCase();
+            const hints = data.hints || [];
+
+            // Determine verification status and confidence
+            let statusText = 'Appears Genuine';
+            let confidenceText = 'HIGH CONFIDENCE';
+            let boxClass = 'bg-green-50 border-green-300';
+            let iconColor = 'text-green-600';
+            let titleColor = 'text-green-800';
+            let badgeClass = 'bg-green-200 text-green-800';
+
+            if (status === 'counterfeit' || score < 50) {
+                statusText = 'Potentially Counterfeit';
+                confidenceText = 'HIGH RISK';
+                boxClass = 'bg-red-50 border-red-300';
+                iconColor = 'text-red-600';
+                titleColor = 'text-red-800';
+                badgeClass = 'bg-red-200 text-red-800';
+            } else if (status === 'suspect' || score < 80) {
+                statusText = 'Requires Further Inspection';
+                confidenceText = 'MEDIUM CONFIDENCE';
+                boxClass = 'bg-yellow-50 border-yellow-300';
+                iconColor = 'text-yellow-600';
+                titleColor = 'text-yellow-800';
+                badgeClass = 'bg-yellow-200 text-yellow-800';
+            }
+
+            // Find and update the verification box
+            const verificationBox = document.querySelector('#resultsPage > div > div:nth-child(2)');
+            
+            if (verificationBox) {
+                verificationBox.className = `${boxClass} border-2 rounded-xl shadow-md p-8`;
+                
+                // Build the findings HTML
+                let findingsHTML = '';
+                hints.forEach(hint => {
+                    findingsHTML += `
+                        <div class="flex items-start gap-3">
+                            <svg class="w-5 h-5 ${iconColor} mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <p class="leading-relaxed ${titleColor.replace('800', '900')}">${hint}</p>
+                        </div>
+                    `;
+                });
+
+                verificationBox.innerHTML = `
+                    <div class="flex items-center gap-3 mb-6">
+                        <svg class="w-8 h-8 ${iconColor}" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                        </svg>
+                        <h3 class="text-3xl font-bold ${titleColor}">${statusText}</h3>
+                        <span class="ml-2 px-3 py-1 ${badgeClass} text-sm font-semibold rounded-full">${confidenceText}</span>
+                    </div>
+                    <div class="mb-4 p-3 bg-white bg-opacity-50 rounded-lg">
+                        <p class="text-sm ${titleColor}"><strong>AI Confidence Score:</strong> ${score}/100</p>
+                        <p class="text-xs ${titleColor} mt-1">Analyzed ${data.filesAnalyzed || 1} image(s) using Google Gemini AI</p>
+                    </div>
+                    <div class="space-y-3 ${titleColor.replace('800', '900')}">
+                        ${findingsHTML}
+                    </div>
+                `;
+            }
+        }
+
+        // Alternative: If you want to show verification results instead
+        async function handleFileUploadWithAPI() {
+            const fileInput = document.getElementById('fileInput');
+            const files = fileInput.files;
+
+            if (!files || files.length === 0) {
+                return;
+            }
+
+            showVerifyResults();
+            showVerifyLoading();
+
+            try {
+                const formData = new FormData();
+                
+                // Add all selected files
+                for (let i = 0; i < files.length; i++) {
+                    formData.append('images', files[i]);
+                }
+
+                const response = await fetch(`${API_BASE}/verify`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    showVerifyError(errorText || 'Verification failed. Please try again.');
+                    return;
+                }
+
+                const data = await response.json();
+                displayVerifyResult(data);
+                
+            } catch (error) {
+                showVerifyError('Connection error. Please check if the backend is running.');
+            }
+
+            // Reset file input
+            fileInput.value = '';
+        }
+
+        function showVerifyLoading() {
+            document.getElementById('verifyLoadingState').classList.remove('hidden');
+            document.getElementById('verifyErrorState').classList.add('hidden');
+            document.getElementById('verifyResultCard').classList.add('hidden');
+        }
+
+        function showVerifyError(message) {
+            document.getElementById('verifyLoadingState').classList.add('hidden');
+            document.getElementById('verifyErrorState').classList.remove('hidden');
+            document.getElementById('verifyResultCard').classList.add('hidden');
+            document.getElementById('verifyErrorMessage').textContent = message;
+        }
+
+        function displayVerifyResult(data) {
+            document.getElementById('verifyLoadingState').classList.add('hidden');
+            document.getElementById('verifyErrorState').classList.add('hidden');
+            document.getElementById('verifyResultCard').classList.remove('hidden');
+
+            // Populate verification result
+            const score = data.score !== undefined ? data.score : (data.authenticityScore || 0);
+            document.getElementById('filesAnalyzed').textContent = data.filesAnalyzed || '1';
+            document.getElementById('authScore').textContent = score;
+            
+            // Status with color coding
+            const status = (data.status || 'unknown').toLowerCase();
+            const statusElement = document.getElementById('authStatus');
+            const statusContainer = document.getElementById('statusContainer');
+            
+            statusElement.textContent = data.status || 'Unknown';
+            
+            // Color-code status
+            statusContainer.classList.remove('bg-green-50', 'bg-yellow-50', 'bg-red-50');
+            statusElement.classList.remove('text-green-600', 'text-yellow-600', 'text-red-600');
+            
+            if (status === 'authentic' || status === 'verified genuine') {
+                statusContainer.classList.add('bg-green-50');
+                statusElement.classList.add('text-green-600');
+            } else if (status === 'suspect') {
+                statusContainer.classList.add('bg-yellow-50');
+                statusElement.classList.add('text-yellow-600');
+            } else {
+                statusContainer.classList.add('bg-red-50');
+                statusElement.classList.add('text-red-600');
+            }
+
+            // Populate hints list
+            const hintsList = document.getElementById('hintsList');
+            hintsList.innerHTML = '';
+            
+            if (data.hints && data.hints.length > 0) {
+                data.hints.forEach(hint => {
+                    const li = document.createElement('li');
+                    li.className = 'flex items-start gap-2 p-3 bg-blue-50 rounded';
+                    li.innerHTML = `
+                        <svg class="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                        </svg>
+                        <span class="text-gray-800">${hint}</span>
+                    `;
+                    hintsList.appendChild(li);
+                });
+            } else {
+                const li = document.createElement('li');
+                li.className = 'text-gray-600 italic';
+                li.textContent = 'No additional analysis notes.';
+                hintsList.appendChild(li);
+            }
+        }
+
+        // Header search functionality
+        function handleHeaderSearch() {
+            const query = document.getElementById('headerSearchInput').value.trim();
+            if (query) {
+                document.getElementById('searchInput').value = query;
+                handleSearch();
+            }
+        }
+
+        // Enter key for search
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                handleSearch();
+            }
+        });
+
+        // Enter key for header search
+        document.addEventListener('DOMContentLoaded', function() {
+            const headerSearchInput = document.getElementById('headerSearchInput');
+            if (headerSearchInput) {
+                headerSearchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        handleHeaderSearch();
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>

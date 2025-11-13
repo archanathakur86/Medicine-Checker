@@ -1,0 +1,240 @@
+[
+  {
+    "id": 1,
+    "name": "Paracetamol",
+    "manufacturer": "HealWell Laboratories",
+    "dosage": "500 mg tablet",
+    "batch": "PW23A07",
+    "expiry": "12/2027",
+    "warnings": [
+      "Do not exceed 4,000 mg in 24 hours",
+      "Consult a doctor if you have liver disease",
+      "Keep out of reach of children"
+    ],
+    "description": "Paracetamol (acetaminophen) is an analgesic and antipyretic used to relieve mild to moderate pain and reduce fever."
+  },
+  {
+    "id": 2,
+    "name": "Amoxicillin",
+    "manufacturer": "MedCore Pharma Pvt Ltd",
+    "dosage": "500 mg capsule",
+    "batch": "MC22B51",
+    "expiry": "05/2026",
+    "warnings": [
+      "Complete the full course as prescribed",
+      "Not recommended for patients with penicillin allergy",
+      "May cause gastrointestinal upset"
+    ],
+    "description": "Amoxicillin is a penicillin-type antibiotic used to treat a wide variety of bacterial infections."
+  },
+  {
+    "id": 3,
+    "name": "Ibuprofen",
+    "manufacturer": "Apex Therapeutics",
+    "dosage": "400 mg tablet",
+    "batch": "AT24C19",
+    "expiry": "08/2028",
+    "warnings": [
+      "Take with food to reduce stomach upset",
+      "Avoid use in late pregnancy",
+      "Use cautiously in patients with kidney disease"
+    ],
+    "description": "Ibuprofen is a nonsteroidal anti-inflammatory drug (NSAID) used for pain relief, fever reduction, and inflammation control."
+  },
+  {
+    "id": 4,
+    "name": "Cetirizine",
+    "manufacturer": "NovaCare Biotech",
+    "dosage": "10 mg tablet",
+    "batch": "NC25D03",
+    "expiry": "03/2029",
+    "warnings": [
+      "May cause drowsiness in some individuals",
+      "Do not exceed recommended dose",
+      "Consult a doctor if symptoms persist"
+    ],
+    "description": "Cetirizine is an antihistamine used to relieve allergy symptoms such as runny nose, sneezing, and itchy/watery eyes."
+  },
+  {
+    "id": 5,
+    "name": "Metformin",
+    "manufacturer": "Glucare Pharmaceuticals",
+    "dosage": "500 mg tablet",
+    "batch": "GP23E42",
+    "expiry": "11/2027",
+    "warnings": [
+      "Take with meals to reduce gastrointestinal side effects",
+      "Not for use in severe kidney impairment",
+      "Monitor blood glucose regularly"
+    ],
+    "description": "Metformin is an oral antidiabetic medication used to improve blood sugar control in adults with type 2 diabetes."
+  },
+  {
+    "id": 6,
+    "name": "Aspirin",
+    "manufacturer": "CardioHealth Pharma",
+    "dosage": "75 mg tablet",
+    "batch": "CH24F12",
+    "expiry": "06/2028",
+    "warnings": [
+      "Do not use if allergic to aspirin",
+      "May increase bleeding risk",
+      "Not recommended for children under 12"
+    ],
+    "description": "Aspirin is used to reduce pain, fever, and inflammation. Low doses are used to prevent heart attacks and strokes."
+  },
+  {
+    "id": 7,
+    "name": "Azithromycin",
+    "manufacturer": "BioMed Pharmaceuticals",
+    "dosage": "500 mg tablet",
+    "batch": "BP25G34",
+    "expiry": "09/2029",
+    "warnings": [
+      "Complete the full course",
+      "May cause stomach upset",
+      "Avoid if allergic to macrolide antibiotics"
+    ],
+    "description": "Azithromycin is a macrolide antibiotic used to treat various bacterial infections including respiratory and skin infections."
+  },
+  {
+    "id": 8,
+    "name": "Omeprazole",
+    "manufacturer": "GastroRelief Ltd",
+    "dosage": "20 mg capsule",
+    "batch": "GR23H56",
+    "expiry": "04/2027",
+    "warnings": [
+      "Take before meals",
+      "Long-term use may increase risk of bone fractures",
+      "May interact with other medications"
+    ],
+    "description": "Omeprazole is a proton pump inhibitor that reduces stomach acid production, used to treat GERD and ulcers."
+  },
+  {
+    "id": 9,
+    "name": "Atorvastatin",
+    "manufacturer": "CholesterCare Inc",
+    "dosage": "10 mg tablet",
+    "batch": "CC24I78",
+    "expiry": "10/2028",
+    "warnings": [
+      "Avoid grapefruit juice",
+      "Report muscle pain immediately",
+      "Regular liver function tests recommended"
+    ],
+    "description": "Atorvastatin is a statin medication used to lower cholesterol and reduce the risk of cardiovascular disease."
+  },
+  {
+    "id": 10,
+    "name": "Losartan",
+    "manufacturer": "HyperCare Laboratories",
+    "dosage": "50 mg tablet",
+    "batch": "HC25J90",
+    "expiry": "12/2029",
+    "warnings": [
+      "Do not use during pregnancy",
+      "Monitor blood pressure regularly",
+      "Stay hydrated"
+    ],
+    "description": "Losartan is an angiotensin receptor blocker used to treat high blood pressure and protect kidneys in diabetes."
+  },
+  {
+    "id": 11,
+    "name": "Amlodipine",
+    "manufacturer": "VasoDilate Pharma",
+    "dosage": "5 mg tablet",
+    "batch": "VD24K23",
+    "expiry": "07/2028",
+    "warnings": [
+      "May cause swelling in ankles",
+      "Rise slowly from sitting position",
+      "Avoid grapefruit"
+    ],
+    "description": "Amlodipine is a calcium channel blocker used to treat high blood pressure and chest pain (angina)."
+  },
+  {
+    "id": 12,
+    "name": "Gabapentin",
+    "manufacturer": "NeuroCare Pharmaceuticals",
+    "dosage": "300 mg capsule",
+    "batch": "NC25L45",
+    "expiry": "02/2030",
+    "warnings": [
+      "May cause drowsiness",
+      "Do not stop suddenly",
+      "Avoid alcohol"
+    ],
+    "description": "Gabapentin is used to treat nerve pain and prevent seizures. Also prescribed for restless leg syndrome."
+  },
+  {
+    "id": 13,
+    "name": "Levothyroxine",
+    "manufacturer": "ThyroHealth Labs",
+    "dosage": "100 mcg tablet",
+    "batch": "TH24M67",
+    "expiry": "05/2028",
+    "warnings": [
+      "Take on empty stomach",
+      "Wait 30 minutes before eating",
+      "Regular thyroid tests required"
+    ],
+    "description": "Levothyroxine is a thyroid hormone replacement used to treat hypothyroidism (underactive thyroid)."
+  },
+  {
+    "id": 14,
+    "name": "Montelukast",
+    "manufacturer": "RespiCare Inc",
+    "dosage": "10 mg tablet",
+    "batch": "RC25N89",
+    "expiry": "08/2029",
+    "warnings": [
+      "Not for acute asthma attacks",
+      "Report mood changes",
+      "Take in the evening"
+    ],
+    "description": "Montelukast is a leukotriene receptor antagonist used to prevent asthma symptoms and treat allergic rhinitis."
+  },
+  {
+    "id": 15,
+    "name": "Insulin",
+    "manufacturer": "DiabetesCare Global",
+    "dosage": "100 units/ml injection",
+    "batch": "DC24O12",
+    "expiry": "11/2027",
+    "warnings": [
+      "Store in refrigerator",
+      "Monitor blood sugar regularly",
+      "Rotate injection sites"
+    ],
+    "description": "Insulin is a hormone injection used to control blood sugar levels in people with diabetes."
+  },
+  {
+    "id": 16,
+    "name": "Pantoprazole",
+    "manufacturer": "GastroShield Pharma",
+    "dosage": "40 mg tablet",
+    "batch": "GS25P34",
+    "expiry": "03/2030",
+    "warnings": [
+      "Take before breakfast",
+      "May cause headache",
+      "Report severe diarrhea"
+    ],
+    "description": "Pantoprazole is a proton pump inhibitor that reduces stomach acid, used to treat GERD and erosive esophagitis."
+  },
+  {
+    "id": 17,
+    "name": "Clopidogrel",
+    "manufacturer": "CardioProtect Ltd",
+    "dosage": "75 mg tablet",
+    "batch": "CP24Q56",
+    "expiry": "06/2028",
+    "warnings": [
+      "May increase bleeding risk",
+      "Avoid NSAIDs",
+      "Report unusual bruising"
+    ],
+    "description": "Clopidogrel is an antiplatelet medication used to prevent blood clots in people with heart disease or stroke history."
+  }
+]

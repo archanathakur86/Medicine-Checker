@@ -1,0 +1,326 @@
+/* Price Comparison Styles */
+
+.price-comparison {
+  margin: 1.5rem 0;
+}
+
+.btn-find-price {
+  width: 100%;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-find-price:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.btn-find-price:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.price-results {
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.price-results__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.price-results__header h3 {
+  color: #2d3748;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.btn-refresh {
+  padding: 0.5rem 1rem;
+  background: #f7fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-refresh:hover {
+  background: #edf2f7;
+  border-color: #cbd5e0;
+}
+
+.best-deal-banner {
+  background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+  padding: 1.5rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+.best-deal-banner__icon {
+  font-size: 3rem;
+}
+
+.best-deal-banner__content h4 {
+  margin: 0 0 0.5rem 0;
+  color: #2d3748;
+  font-size: 1.2rem;
+}
+
+.best-deal-banner__content .pharmacy-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1a202c;
+  margin: 0.25rem 0;
+}
+
+.best-deal-banner__content .price-value {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #2f855a;
+  margin: 0.25rem 0;
+}
+
+.best-deal-banner__content .savings {
+  color: #2f855a;
+  font-weight: 600;
+  margin: 0.25rem 0;
+}
+
+.price-table {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.price-table__header {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.2fr 1fr 1fr;
+  gap: 1rem;
+  padding: 1rem;
+  background: #4a5568;
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.price-table__row {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.2fr 1fr 1fr;
+  gap: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.price-table__row:hover {
+  background: #f7fafc;
+}
+
+.price-table__row--best {
+  background: #f0fff4;
+  border-left: 4px solid #48bb78;
+}
+
+.price-table__row--out-of-stock {
+  opacity: 0.6;
+}
+
+.pharmacy-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pharmacy-info strong {
+  color: #2d3748;
+}
+
+.badge-lowest {
+  background: #48bb78;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.price-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.price-amount {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #2d3748;
+}
+
+.discount-badge {
+  background: #fc8181;
+  color: white;
+  padding: 0.125rem 0.375rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  align-self: flex-start;
+}
+
+.rating-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.rating-value {
+  color: #718096;
+  font-size: 0.9rem;
+}
+
+.delivery-info {
+  color: #718096;
+  font-size: 0.9rem;
+}
+
+.stock-badge {
+  padding: 0.375rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.stock-badge--in-stock {
+  background: #c6f6d5;
+  color: #22543d;
+}
+
+.stock-badge--out-of-stock {
+  background: #fed7d7;
+  color: #742a2a;
+}
+
+.btn-buy {
+  padding: 0.5rem 1rem;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  display: inline-block;
+  text-align: center;
+}
+
+.btn-buy:hover {
+  background: #5a67d8;
+  transform: translateX(2px);
+}
+
+.price-summary {
+  padding: 1rem;
+  background: #edf2f7;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.price-summary p {
+  margin: 0.5rem 0;
+  color: #4a5568;
+}
+
+.price-note {
+  font-size: 0.9rem;
+  color: #718096;
+  font-style: italic;
+}
+
+.btn-hide-prices {
+  width: 100%;
+  padding: 0.75rem;
+  background: #f7fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #4a5568;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-hide-prices:hover {
+  background: #edf2f7;
+  border-color: #cbd5e0;
+}
+
+.price-error {
+  padding: 1rem;
+  background: #fed7d7;
+  border-left: 4px solid #fc8181;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.price-error p {
+  margin: 0;
+  color: #742a2a;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .price-table__header,
+  .price-table__row {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .price-table__header {
+    display: none;
+  }
+
+  .price-table__row {
+    padding: 1.5rem 1rem;
+  }
+
+  .price-table__row > div::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #4a5568;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .best-deal-banner {
+    flex-direction: column;
+    text-align: center;
+  }
+}
