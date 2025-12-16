@@ -2,12 +2,12 @@
 
 A MERN stack web application to help users verify medicine authenticity and get clear drug information.
 
-## 🎯 Features
+##  Features
 
 1. **AI Authenticity Check** - Upload medicine images for real-time AI verification using **Google Gemini AI**
 2. **Drug Information Hub** - Search for medicine details by name
 
-## 🛠 Tech Stack
+##  Tech Stack
 
 ### Frontend
 - React 18 (functional components, hooks)
@@ -19,7 +19,7 @@ A MERN stack web application to help users verify medicine authenticity and get 
 - Express
 - Mock JSON database (simulates MongoDB)
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 medicine/
@@ -71,7 +71,7 @@ medicine/
     └── .env.example
 ```
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### Prerequisites
 - Node.js 18+ and npm
@@ -126,7 +126,7 @@ PORT=5001 npm run dev
 
 The Vite dev server includes a proxy that forwards `/api/*` requests to the backend.
 
-## 📡 API Endpoints
+##  API Endpoints
 
 ### POST /api/verify
 Upload images for authenticity verification.
@@ -179,7 +179,7 @@ Get medicine information by name (case-insensitive).
 }
 ```
 
-## 🧪 Testing the API
+##  Testing the API
 
 **Test medicine search:**
 ```bash
@@ -192,7 +192,7 @@ curl -X POST http://localhost:5001/api/verify \
   -F "images=@test-image.jpg"
 ```
 
-## 🔧 Configuration
+##  Configuration
 
 ### Backend Environment Variables
 
@@ -216,7 +216,7 @@ VITE_API_BASE_URL=http://localhost:5001/api
 
 *Note: The frontend uses Vite's proxy by default, so this is optional.*
 
-## 📝 Available Medicines in Mock Database
+##  Available Medicines in Mock Database
 
 1. Paracetamol 500
 2. Amoxicillin
@@ -226,7 +226,7 @@ VITE_API_BASE_URL=http://localhost:5001/api
 
 Search is case-insensitive.
 
-## 🎨 Frontend Components
+##  Frontend Components
 
 ### Scan.jsx
 - Image upload (multiple files)
@@ -248,7 +248,7 @@ Search is case-insensitive.
 - Score visualization
 - Analysis hints/notes
 
-## 🚨 Troubleshooting
+##  Troubleshooting
 
 ### Connection Refused Error
 
@@ -292,7 +292,7 @@ PORT=5002 npm start
 2. Verify backend is on port 5001
 3. Check browser console for CORS errors
 
-## 📦 Dependencies
+## Dependencies
 
 ### Backend
 - express - Web framework
@@ -308,7 +308,7 @@ PORT=5002 npm start
 - vite - Build tool
 - @vitejs/plugin-react - Vite React plugin
 
-## 🔐 Security Notes
+##  Security Notes
 
 This is a **demonstration project** with a mock database and simulated AI. For production:
 
@@ -321,11 +321,11 @@ This is a **demonstration project** with a mock database and simulated AI. For p
 7. Secure file upload validation
 8. Add logging & monitoring
 
-## 📄 License
+##  License
 
 Educational project for NavGurukul.
 
-## 🤝 Contributing
+##  Contributing
 
 This is a learning project. Feel free to extend it with:
 - Real database integration
@@ -337,4 +337,4 @@ This is a learning project. Feel free to extend it with:
 
 ---
 
-**Built with ❤️ for PharmaTrust**
+
